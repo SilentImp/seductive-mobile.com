@@ -60,6 +60,7 @@
     line-height: 32px;
     box-sizing: border-box;
     transition: background-color .25s;
+    font-family: "PT Sans", sans-serif;
     &:focus,
     &:hover{
       background: color($grey lightness(+5%));

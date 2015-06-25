@@ -6,7 +6,7 @@ class Header
     @sub = @header.find '.page-header__sub-wrapper'
     @open = false
     @animation = false
-    
+
     @touch = $('html').hasClass 'touch'
     @toucher = null
     if @touch
@@ -22,11 +22,12 @@ class Header
 
   closeMenuSpace: (event)=>
     if $(event.target).hasClass 'page-header__navigation'
-      @closeMenu()
+      @closeMenu(event)
 
-  closeMenu: =>
+  closeMenu: (event)=>
     if @animation || !@open || !@state
       return
+
     if $(event.target).hasClass 'page-header__navigation'
       @button.trigger 'click'
 
@@ -39,19 +40,19 @@ class Header
 
     if @animation
       return
-
-    @open = !@open
     @animation = true
 
     options =
       'easing': 'ease'
       'duration': 300
 
-    if !@open
+    if @open
       props =
-        left: '-100%'
+        left: '-120%'
         compleate: @endAnimation
+      @open = false
     else
+      @open = true
       props =
         left: 0
         compleate: @endAnimation
