@@ -30,11 +30,11 @@ Header = (function() {
 
   Header.prototype.closeMenuSpace = function(event) {
     if ($(event.target).hasClass('page-header__navigation')) {
-      return this.closeMenu();
+      return this.closeMenu(event);
     }
   };
 
-  Header.prototype.closeMenu = function() {
+  Header.prototype.closeMenu = function(event) {
     if (this.animation || !this.open || !this.state) {
       return;
     }
@@ -55,18 +55,19 @@ Header = (function() {
     if (this.animation) {
       return;
     }
-    this.open = !this.open;
     this.animation = true;
     options = {
       'easing': 'ease',
       'duration': 300
     };
-    if (!this.open) {
+    if (this.open) {
       props = {
-        left: '-100%',
+        left: '-120%',
         compleate: this.endAnimation
       };
+      this.open = false;
     } else {
+      this.open = true;
       props = {
         left: 0,
         compleate: this.endAnimation
@@ -100,4 +101,19 @@ Header = (function() {
 
 $(window).ready(function() {
   return new Header;
+});
+
+var Layout;
+
+Layout = (function() {
+  function Layout() {
+    $('[placeholder]').placeholderEnhanced();
+  }
+
+  return Layout;
+
+})();
+
+$(document).ready(function() {
+  return new Layout;
 });

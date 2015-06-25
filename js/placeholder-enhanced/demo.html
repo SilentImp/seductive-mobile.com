@@ -1,0 +1,69 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jQuery Placeholder Enhanced - Demo</title>
+
+<link href="css/demo.css" rel="stylesheet" />
+
+<!-- Placeholder Enhanced required css (on a different file just for demo) -->
+<link href="css/placeholder-enhanced.css" rel="stylesheet" />
+
+<h1>jQuery Placeholder Enhanced</h1>
+
+<div id="content">
+  <div id="view" class="section">
+    <form method="post" id="form" novalidate>
+      <p><input type="text" name="text" id="text" placeholder="Insert text here" /></p>
+      <p><input type="email" name="email" id="email" placeholder="Insert email here" /></p>
+      <p><input type="url" name="url" id="url" placeholder="Insert url here" /></p>
+      <p><input type="search" name="search" id="search" placeholder="Search" /></p>
+      <p><textarea cols="50" rows="3" name="textarea" id="textarea" placeholder="Write your comments here"></textarea></p>
+      <p><input type="password" name="password" id="password" placeholder="Type password here" /></p>
+      <p>Setting size attribute on password also works fine for unsupported browsers</p>
+      <p><input type="password" name="passwordSize" id="passwordSize" size="55" placeholder="Type password here" /></p>
+      <div class="separator"></div>
+      <p id="submit"><input type="submit" class="btn" value="Send" /></p>
+    </form>
+    <p><strong>Form result:</strong> <span id="result"></span></p>
+  </div>
+</div>
+
+<p>Set/Empty value to the first input programatically using jQuery's .val() function</p>
+<button id="set_btn" class="btn">Set "Demo text"</button>
+<button id="empty_btn" class="btn">Empty input</button>
+
+<!-- latest jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<!-- Placeholder Enhanced -->
+<script src="js/jquery.placeholder-enhanced.js"></script>
+
+<!-- demo -->
+<script>
+  $(function () {
+    var $form = $('#form'),
+      $result = $('#result'),
+      $input = $('#text');
+
+    // display submitted data
+    $form.bind('submit', function (ev) {
+      ev.preventDefault();
+      $result.html($form.serialize());
+    });
+
+    // set value programatically
+    // placeholder should be removed
+    $('#set_btn').bind('click', function () {
+      $input.val('Demo text');
+    });
+
+    // empty value programatically
+    // placeholder should appear
+    $('#empty_btn').bind('click', function () {
+      // supports .val(''), .val(null), .val(undefined)
+      $input.val('');
+    });
+  });
+</script>
+
+<a href="http://github.com/dciccale/placeholder-enhanced"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
