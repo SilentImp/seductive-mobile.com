@@ -116,7 +116,7 @@ gulp.task('deploy', function () {
     .pipe(plumber())
     .pipe(deploy({
       cacheDir:   'gh-cache',
-      remoteUrl:  'git@github.com:SilentImp/leroymerlin.ru.git'
+      remoteUrl:  'git@github.com:SilentImp/seductive-mobile.com.git'
     }).on('error', function(){
       console.log('error', arguments);
     }));
