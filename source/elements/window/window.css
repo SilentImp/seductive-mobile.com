@@ -1,0 +1,109 @@
+@import "source/helpers/helpers.css";
+
+.window{
+  background: $dark-blue url('../images/header-bg.jpg') 50% 50% no-repeat;
+  background-size: cover;
+
+  &__wrapper{
+    height: 450px;
+    position: relative;
+    max-width: 990px;
+    padding: 125px 20px 0;
+    margin: 0 auto;
+    @mixin clearit;
+    &:before{
+      content:".";
+      display: block;
+      position: absolute;
+      background: url('../images/mobile.png') 0 0 no-repeat;
+      background-size: contain;
+      width: 710px;
+      /* 1230 */
+      height: 533px;
+      overflow: hidden;
+      text-indent: -9999px;
+      font-size: 0;
+      line-height: 0;
+      top: 110px;
+      right: 20px;
+      left: 419px;
+      pointer-events: none;
+      z-index: 0;
+      }
+    }
+  &__title{
+    color: $white;
+    font-size: 44px;
+    line-height: 50px;
+    font-family: "PT Sans Caption";
+    max-width: 550px;
+    margin: 0 0 70px;
+    position: relative;
+    z-index: 1;
+    }
+  &__form{
+    position: relative;
+    z-index: 1;
+    }
+  &__input{
+    @mixin input;
+    display: block;
+    margin: 0 0 10px;
+    width: 280px;
+    }
+  &__submit{
+    @mixin buttonClean;
+    display: block;
+    width: 280px;
+    }
+  }
+
+
+@media screen and (max-width: 1230px) {
+  html body .window{
+    &__wrapper{
+      &:before{
+        display: none;
+        }
+      }
+    }
+  }
+
+@media screen and (max-width: 750px) {
+  html body .window{
+    background: $dark-blue;
+    &__title{
+      font-size: 24px;
+      line-height: 30px;
+      max-width: 300px;
+      margin: 0 0 30px;
+      float: left;
+      }
+    &__form{
+      float: right;
+      }
+    &__wrapper{
+      padding: 20px 0;
+      margin: 0 20px;
+      height: auto;
+      }
+    }
+  }
+
+@media screen and (max-width: 650px) {
+  html body .window{
+    &__title{
+      font-size: 22px;
+      line-height: 30px;
+      max-width: none;
+      }
+    &__title,
+    &__form{
+      float:none;
+      }
+    &__submit,
+    &__input{
+      width: 100%;
+      }
+    }
+  }

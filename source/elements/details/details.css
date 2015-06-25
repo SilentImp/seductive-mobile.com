@@ -1,0 +1,120 @@
+@import "source/helpers/helpers.css";
+
+.details{
+  margin: 40px 0;
+  &__wrapper{
+    position: relative;
+    max-width: 990px;
+    padding: 0 20px;
+    margin: 0 auto;
+    @mixin clearit;
+    }
+  &__column{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    margin-left: -25px;
+    &:first-child{
+      margin: 0;
+      padding: 0 35px 0 0;
+      }
+    }
+  &__detail{
+    margin: 0 0 30px;
+    padding: 0 0 0 55px;
+    position: relative;
+    &:after{
+      content: ".";
+      width: 45px;
+      height: 45px;
+      overflow: hidden;
+      text-indent: -999px;
+      font-style: 0;
+      line-height: 0;
+      display: block;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      background-size: 45px 45px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      }
+    &_icon{
+      &_assign:after{
+        background-image: url('../images/assign.png');
+        left: -4px;
+        top: -3px;
+        }
+      &_advice:after{
+        background-image: url('../images/advice.png');
+        left: -4px;
+        top: -7px;
+        }
+      &_collaboration:after{
+        background-image: url('../images/collaboration.png');
+        background-size: 48px 48px;
+        width: 48px;
+        height: 48px;
+        left: -6px;
+        top: -13px;
+        }
+      &_specs:after{
+        background-image: url('../images/specs.png');
+        left: -2px;
+        top: -8px;
+        }
+      &_visualize:after{
+        background-image: url('../images/visualize.png');
+        left: -2px;
+        top: -19px;
+        }
+      &_demos:after{
+        background-image: url('../images/demos.png');
+        left: -4px;
+        top: -14px;
+        }
+      }
+    }
+  &__title{
+    font-size: 22px;
+    line-height: 40px;
+    color: $black;
+    font-family: "PT Sans Caption", sans-serif;
+    margin: 0 0 30px;
+    }
+  &__sub-title{
+    font-size: 16px;
+    line-height: 20px;
+    color: $black;
+    font-weight: bold;
+    font-family: "PT Sans Caption", sans-serif;
+    margin: 0 0 10px;
+    }
+  &__text{
+    font-size: 16px;
+    line-height: 20px;
+    color: $black;
+    margin: 0 0 10px;
+    }
+  }
+
+
+@media screen and (max-width: 650px) {
+  html body .details{
+    margin: 20px 0;
+    &__title{
+      margin: 0 0 20px;
+      }
+    &__column{
+      padding: 0;
+      margin: 0 0 30px;
+      float: none;
+      width: auto;
+      &:first-child{
+        margin: 0 0 70px;
+        }
+      }
+    }
+  }

@@ -1,0 +1,52 @@
+@import "source/helpers/colors.css";
+
+@define-mixin input {
+  display: inline-block;
+  vertical-align: middle;
+  border-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 13px 10px 9px;
+  margin: 0;
+  height: 40px;
+  font-size: 16px;
+  line-height: 18px;
+  color: $white;
+  background: $darkest-blue;
+  font-family: "PT Sans";
+
+  box-sizing: border-box;
+  }
+
+@define-mixin buttonClean {
+  cursor: pointer;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px 10px 10px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 18px;
+  color: $white;
+  font-family: "PT Sans";
+  border-style: none;
+  background: $lighter-blue;
+  box-sizing: border-box;
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0
+    }
+  }
+
+@define-mixin clearit {
+  &:after{
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    text-indent: -999px;
+    }
+  }

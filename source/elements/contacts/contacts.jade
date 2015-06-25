@@ -1,0 +1,18 @@
+footer.contacts
+  .contacts__wrapper
+    .contacts__address
+      h2.contacts__address-title Contact us
+      p.contacts__address-line 
+        span M:  
+        a(href="tel:+380968906666") +380 96 890 6666
+      p.contacts__address-line 
+        span E:
+        a(href="mailto:ms@seductive-mobile.com") ms@seductive-mobile.com
+
+    form.contacts__form(action="/contact/", method="post")
+      input.contacts__input(type="text", placeholder="Name", name="name", required="required")
+      input.contacts__input(type="email", placeholder="E-mail", name="email", required="required")
+      textarea.contacts__textarea(name="message", placeholder="Message", cols="30", rows="10", required="required")
+      button.contacts__submit(type="submit") Send Message
+      
+    p.contacts__copyright Seductive LLC © 2015
