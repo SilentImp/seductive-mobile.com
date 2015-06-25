@@ -3,6 +3,8 @@
 .window{
   background: $dark-blue url('../images/header-bg.jpg') 50% 50% no-repeat;
   background-size: cover;
+  position: relative;
+  overflow: hidden;
 
   &__wrapper{
     height: 450px;
@@ -58,7 +60,7 @@
   }
 
 
-@media screen and (max-width: 1230px) {
+@media screen and (max-width: 1150px) {
   html body .window{
     &__wrapper{
       &:before{
