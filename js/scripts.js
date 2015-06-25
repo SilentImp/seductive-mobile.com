@@ -86,6 +86,11 @@ Header = (function() {
       this.nav.removeAttr('style');
       this.open = false;
       return this.animation = false;
+    } else {
+      return this.nav.css({
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px',
+        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) + 'px'
+      });
     }
   };
 
