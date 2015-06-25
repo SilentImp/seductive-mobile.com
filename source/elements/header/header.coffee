@@ -6,13 +6,15 @@ class Header
     @sub = @header.find '.page-header__sub-wrapper'
     @open = false
     @animation = false
-
+    
     @touch = $('html').hasClass 'touch'
     @toucher = null
     if @touch
       @toucher = new Hammer($('body')[0])
       @toucher.on 'swipeleft', @closeMenu
       @toucher.on 'swiperight', @openMenu
+
+    @checkMedia()
 
     $(window).on 'resize', @checkMedia
     @button.on 'click', @toggleMenu
@@ -23,15 +25,13 @@ class Header
       @closeMenu()
 
   closeMenu: =>
-    console.log 'left'
-    if @animation || !@open
+    if @animation || !@open || !@state
       return
     if $(event.target).hasClass 'page-header__navigation'
       @button.trigger 'click'
 
   openMenu: =>
-    console.log 'right'
-    if @animation || @open
+    if @animation || @open || !@state
       return
     @button.trigger 'click'
 
@@ -62,7 +62,8 @@ class Header
     @animation = false
 
   checkMedia: =>
-    if !Modernizr.mq('(max-width: 767px)')
+    @state = Modernizr.mq '(max-width: 767px)'
+    if !@state
       @nav.velocity 'stop'
       @nav.removeAttr 'style'
       @open = false
