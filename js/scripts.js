@@ -22,6 +22,7 @@ Header = (function() {
       this.toucher.on('swipeleft', this.closeMenu);
       this.toucher.on('swiperight', this.openMenu);
     }
+    this.checkMedia();
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
     this.nav.on('click', this.closeMenuSpace);
@@ -34,8 +35,7 @@ Header = (function() {
   };
 
   Header.prototype.closeMenu = function() {
-    console.log('left');
-    if (this.animation || !this.open) {
+    if (this.animation || !this.open || !this.state) {
       return;
     }
     if ($(event.target).hasClass('page-header__navigation')) {
@@ -44,8 +44,7 @@ Header = (function() {
   };
 
   Header.prototype.openMenu = function() {
-    console.log('right');
-    if (this.animation || this.open) {
+    if (this.animation || this.open || !this.state) {
       return;
     }
     return this.button.trigger('click');
@@ -81,7 +80,8 @@ Header = (function() {
   };
 
   Header.prototype.checkMedia = function() {
-    if (!Modernizr.mq('(max-width: 767px)')) {
+    this.state = Modernizr.mq('(max-width: 767px)');
+    if (!this.state) {
       this.nav.velocity('stop');
       this.nav.removeAttr('style');
       this.open = false;
