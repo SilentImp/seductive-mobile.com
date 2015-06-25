@@ -14,27 +14,41 @@
   color: $white;
   background: $darkest-blue;
   font-family: "PT Sans";
-
   box-sizing: border-box;
+  transition: background-color .25s;
+  &:focus,
+  &:hover{
+    background: color($darkest-blue lightness(+3%));
+    }
   }
 
-@define-mixin buttonClean {
+@define-mixin bc {
   cursor: pointer;
   display: inline-block;
   -webkit-appearance: none;
   -moz-appearance: none;
-  padding: 12px 10px 10px;
+  border-style: none;
   margin: 0;
+  padding: 0;
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0
+    }
+  }
+
+@define-mixin buttonClean {
+  @mixin bc;
+  padding: 12px 10px 10px;
   font-size: 16px;
   line-height: 18px;
   color: $white;
   font-family: "PT Sans";
-  border-style: none;
   background: $lighter-blue;
   box-sizing: border-box;
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0
+  transition: background-color .25s;
+  &:focus,
+  &:hover{
+    background: color($lighter-blue lightness(-20%));
     }
   }
 

@@ -41,6 +41,10 @@
     width: 280px;
     display: block;
     margin: 0 0 10px;
+    &:focus,
+    &:hover{
+      background: color($grey lightness(+5%));
+      }
     }
   &__textarea{
     display: block;
@@ -55,6 +59,11 @@
     font-size: 14px;
     line-height: 32px;
     box-sizing: border-box;
+    transition: background-color .25s;
+    &:focus,
+    &:hover{
+      background: color($grey lightness(+5%));
+      }
     }
   &__submit{
     @mixin buttonClean;
@@ -64,8 +73,8 @@
   &__form{
     position: absolute;
     top: 150px;
-    right: 150px;
-    widows: 280px;
+    left: 600px;
+    width: 280px;
     }
   &__wrapper{
     position: relative;
@@ -76,10 +85,10 @@
     }
   }
 
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   html body .contacts{
     &__form{
+      left: auto;
       right: 20px;
       }
     }
@@ -90,6 +99,7 @@
     position: static;
     box-shadow: 0 1000px 0 1000px $blue-black;
     &__form{
+      width: auto;
       position: static;
       margin: 0 0 50px;
       }

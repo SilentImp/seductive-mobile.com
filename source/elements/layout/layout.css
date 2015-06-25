@@ -1,0 +1,24 @@
+@import "source/helpers/helpers.css";
+
+body{
+  font-family: 'PT Sans', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  padding: 0 0 550px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  a{
+    color: $lighter-blue;
+    &:hover,
+    &:active{
+      text-decoration: none;
+      }
+    }
+  }
+
+
+@media screen and (max-width: 650px) {
+  html body{
+    padding: 0;
+    }
+  }

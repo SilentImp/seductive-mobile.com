@@ -6,6 +6,18 @@
   left: 0;
   right: 0;
   top: 35px;
+  &__menu{
+    @mixin bc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    width: 60px;
+    height: 60px;
+    background: url('../images/menu.svg') 50% 50% no-repeat;
+    cursor: pointer;
+    z-index: 20;
+    }
   &__logotype{
     float: left;
     background: url("../images/logotype.png") 0px 0px no-repeat;
@@ -51,12 +63,29 @@
   }
 
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 767px) {
   .page-header{
-    position: static;
+    position: fixed;
+    top: 0;
+    z-index: 20;
     height: 60px;
     line-height: 60px;
     background-color: $black;
+    &__menu{
+      display: block;
+      }
+    &__sub-wrapper{
+      background: $black;
+      @mixin clearit;
+      padding: 60px 0 20px;
+      }
+    &__link{
+      float: left;
+      clear: both;
+      display: block;
+      width: auto;
+      margin: 0 30px;
+      }
     &__logotype{
       background-position: 0 17px;
       background-size: 207px 16px;
@@ -68,7 +97,14 @@
       vertical-align: middle;
       }
     &__navigation{
-      display: none;
+      position: fixed;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      background: color($black a(50%));
+      z-index: -2;
+      font-size: 0;
       }
     }
   }
