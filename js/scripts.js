@@ -6,7 +6,6 @@ Header = (function() {
     this.checkMedia = bind(this.checkMedia, this);
     this.endAnimation = bind(this.endAnimation, this);
     this.toggleMenu = bind(this.toggleMenu, this);
-    this.openMenu = bind(this.openMenu, this);
     this.closeMenu = bind(this.closeMenu, this);
     this.closeMenuSpace = bind(this.closeMenuSpace, this);
     this.header = $('.page-header');
@@ -15,13 +14,6 @@ Header = (function() {
     this.sub = this.header.find('.page-header__sub-wrapper');
     this.open = false;
     this.animation = false;
-    this.touch = $('html').hasClass('touch');
-    this.toucher = null;
-    if (this.touch) {
-      this.toucher = new Hammer($('body')[0]);
-      this.toucher.on('swipeleft', this.closeMenu);
-      this.toucher.on('swiperight', this.openMenu);
-    }
     this.checkMedia();
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
@@ -43,13 +35,6 @@ Header = (function() {
     }
   };
 
-  Header.prototype.openMenu = function() {
-    if (this.animation || this.open || !this.state) {
-      return;
-    }
-    return this.button.trigger('click');
-  };
-
   Header.prototype.toggleMenu = function() {
     var options, props;
     if (this.animation) {
@@ -62,14 +47,14 @@ Header = (function() {
     };
     if (this.open) {
       props = {
-        left: '-120%',
+        top: -(1.2 * this.vh) + 'px',
         compleate: this.endAnimation
       };
       this.open = false;
     } else {
       this.open = true;
       props = {
-        left: 0,
+        top: 0,
         compleate: this.endAnimation
       };
     }
@@ -88,9 +73,9 @@ Header = (function() {
       this.open = false;
       return this.animation = false;
     } else {
+      this.vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       return this.nav.css({
-        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px',
-        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) + 'px'
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px'
       });
     }
   };
