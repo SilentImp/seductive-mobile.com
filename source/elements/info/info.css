@@ -1,20 +1,21 @@
 @import "source/helpers/helpers.css";
 
 .info{
-  margin: 60px 0;
+  margin: 60px 0 54px;
   &__wrapper{
     position: relative;
     max-width: 990px;
-    padding: 0 20px;
+    padding: 0;
     margin: 0 auto;
     @mixin clearit;
+    border-bottom: 1px solid color($blue a(20%));
     }
   &__block{
     width: 33%;
     box-sizing: border-box;
     padding: 0 20px 0 0;
     float: left;
-    min-height: 205px;
+    min-height: 211px;
     }
   &__title{
     font-size: 16px;
@@ -32,9 +33,18 @@
     }
   }
 
+@media screen and (max-width: 1030px) {
+  html body .info{
+    margin: 60px 20px;
+    }
+  }
+
 @media screen and (max-width: 650px) {
   html body .info{
-    margin: 60px 0 25px;
+    margin: 60px 0 35px;
+    &__wrapper{
+      padding: 0 20px;
+      }
     &__block{
       width: auto;
       float: none;
