@@ -2,7 +2,7 @@
 
 .about{
   background: $cyan;
-  &__text{
+  &__abstract{
     line-height: 30px;
     display: inline-block;
     vertical-align: top;
@@ -38,6 +38,7 @@
     }
   &__linked-in,
   &__fb{
+    white-space: nowrap;
     background-color: $white;
     margin: 0 10px;
     display: inline-block;
@@ -65,7 +66,7 @@
     font-size: 22px;
     line-height: 30px;
     font-weight: bold;
-    margin: 0 0 30px;
+    margin: 0 0 30px
     }
   &__text{
     font-size: 16px;
@@ -81,5 +82,51 @@
     color: $white;
     background: url('../images/about.jpg') 50% 100% no-repeat;
     background-size: 100% auto;
+    }
+  }
+
+
+@media screen and (max-width: 767px) {
+  html body .about{
+    &__wrapper{
+      background-size: auto 330px;
+      height: auto;
+      padding: 20px;
+      }
+    &__abstract{
+      line-height: 15px;
+      font-size: 12px;
+      margin-top: 2px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: left;
+      }
+    &__value{
+      font-size: 36px;
+      }
+    &__text{
+      margin: 0 0 30px;
+      line-height: 20px;
+      font-size: 16px;
+      }
+    &__metrics{
+      height: auto;
+      position: static;
+      }
+    &__metric{
+      height: 60px;
+      width: 50%;
+      text-align: left;
+      margin: 0 0 20px;
+      }
+    &__social{
+      position: static;
+      }
+    &__linked-in,
+    &__fb{
+      width: 100%;
+      margin: 0 0 10px;
+      box-sizing: border-box;
+      }
     }
   }
