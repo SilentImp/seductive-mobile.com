@@ -8,6 +8,11 @@
   overflow: hidden;
   position: relative;
 
+  &__contact{
+    display: none;
+    margin: 30px 0 20px;
+    }
+
   &__advantage{
     width: 33%;
     box-sizing: border-box;
@@ -80,8 +85,14 @@
 
 @media screen and (max-width: 767px) {
   html body .abstract{
+    &__contact{
+      display: block;
+      width: 100%;
+      @mixin buttonClean;
+      }
     &__wrapper{
-      padding: 75px 20px 0;
+      padding: 75px 20px 20px;
+      height: auto;
       }
     &__video{
       display: none;

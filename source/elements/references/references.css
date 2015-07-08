@@ -79,3 +79,35 @@
     margin: 0 auto;
     }
   }
+
+
+@media screen and (max-width: 767px) {
+  html body .references{
+    &__wrapper{
+      padding: 0 20px;
+      margin: 0;
+      }
+    &__text{
+      margin: 0;
+      }
+    &__logos{
+      font-size: 0;
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      }
+    &__link{
+      width:50%;
+      display: inline-block;
+      }
+    &__reference{
+      width: auto;
+      margin: 0 0 50px;
+      padding: 0;
+      display: none;
+      &:first-child{
+        display: block;
+        }
+      }
+    }
+  }
