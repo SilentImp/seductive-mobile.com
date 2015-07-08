@@ -1,3 +1,29 @@
+var Abstract,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Abstract = (function() {
+  function Abstract() {
+    this.loaded = bind(this.loaded, this);
+    this.video = $('.abstract__video');
+    if (Modernizr.touch) {
+      this.video.remove();
+    } else {
+      this.video.on('canplaythrough', this.loaded);
+    }
+  }
+
+  Abstract.prototype.loaded = function() {
+    return this.video.addClass('abstract__video_loaded');
+  };
+
+  return Abstract;
+
+})();
+
+$(document).ready(function() {
+  return new Abstract;
+});
+
 var Header,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -8,6 +34,7 @@ Header = (function() {
     this.toggleMenu = bind(this.toggleMenu, this);
     this.closeMenu = bind(this.closeMenu, this);
     this.closeMenuSpace = bind(this.closeMenuSpace, this);
+    this.scrollHeader = bind(this.scrollHeader, this);
     this.header = $('.page-header');
     this.button = this.header.find('.page-header__menu');
     this.nav = this.header.find('.page-header__navigation');
@@ -18,7 +45,16 @@ Header = (function() {
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
     this.nav.on('click', this.closeMenuSpace);
+    $(window).on('scroll', this.scrollHeader);
   }
+
+  Header.prototype.scrollHeader = function(event) {
+    if ($(window).scrollTop() >= 35) {
+      return this.header.toggleClass('page-header_fixed', true);
+    } else {
+      return this.header.toggleClass('page-header_fixed', false);
+    }
+  };
 
   Header.prototype.closeMenuSpace = function(event) {
     if ($(event.target).hasClass('page-header__navigation')) {
