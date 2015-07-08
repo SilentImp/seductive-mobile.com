@@ -20,6 +20,7 @@ var gulp = require('gulp')
     , autoprefixer = require('autoprefixer-core')
     , concat = require('gulp-concat')
     , deploy = require('gulp-gh-pages')
+    , find = require('find')
     , path = require('path')
     , gulpif = require('gulp-if')
     , rename = require("gulp-rename")
@@ -36,6 +37,7 @@ var gulp = require('gulp')
         , 'svg': './source/images/**/*.svg'
         , 'images': './source/images/**/*'
         , 'fonts': './source/fonts/**/*'
+        , 'list': './source/list/index.jade'
       }
       , 'build': {
         'html': './build/'
@@ -46,6 +48,29 @@ var gulp = require('gulp')
         , 'svg': './build/svg/'
       }
     };
+
+gulp.task('list', function () {
+  find.file(/\.html$/, dirs.build.html, function (files){
+    var names = []
+        , file;
+    for(var i=0; i<files.length; i++){
+      file = files[i];
+      if(file.indexOf('index.html')>-1 || (file.match(/\//g) || []).length>1){
+        continue;
+      }
+      names.push(path.basename(file))
+    }
+
+    console.log(names);
+
+    gulp.src(dirs.source.list)
+      .pipe(jade({
+        pretty: true
+        , locals: {'pages': names}
+        }))
+      .pipe(gulp.dest(dirs.build.html));
+  });
+});
 
 gulp.task('copy', function () {
   gulp.src(dirs.source.copy).pipe(gulp.dest(dirs.build.html));
@@ -62,7 +87,7 @@ gulp.task('images', ['svg'], function () {
     .pipe(gulpif(/[.](png|jpeg|jpg|svg)$/, imagemin({
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
-        optimizationLevel: 7,
+        optimizationLevel: 1,
         use: [pngquant()]
       })
     ))
@@ -92,12 +117,13 @@ gulp.task('js', function() {
 gulp.task('css', function() {
   var processors = [
     imprt({
-      from: process.cwd()+'/source/'
+      from: process.cwd()+'/source/elements/layout/layout.css'
+      , glob: true
       }),
-    vars,
-    color,
     mixin,
     nested,
+    vars,
+    color,
     autoprefixer({browsers: ['last 2 version']})
     ];
   return gulp.src(dirs.source.css)

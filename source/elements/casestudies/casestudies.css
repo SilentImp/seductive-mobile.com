@@ -1,0 +1,96 @@
+@import "../../helpers/*.css";
+
+.casestudies{
+  background-color: $dark-white;
+  overflow: hidden;
+  height: 380px;
+  &__navigation{
+    text-align: center;
+    line-height: 50px;
+    }
+  &__page{
+    @mixin bc;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    background: none;
+    span{
+      display: block;
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      background: $button-blue;
+      transition: background-color .25s;
+      }
+    &_current span,
+    &:hover span{
+      background-color: $cyan;
+      }
+    &_current{
+      pointer-events: none;
+      }
+    }
+  &__title{
+    line-height: 80px;
+    text-align: center;
+    font-size: 22px;
+    color: $title-grey;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    }
+  &__cases{
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+    text-align: center;
+    }
+  &__case{
+    width: 238px;
+    height: 248px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid $border-grey-light;
+    overflow: hidden;
+    margin: 0 20px 0 0;
+    background: $white;
+    text-align: left;
+    white-space: normal;
+    text-decoration: none;
+    color: $text-grey;
+    }
+  &__cover{
+    width: 238px;
+    height: 140px;
+    }
+  &__details{
+    padding: 20px 20px 0;
+    }
+  &__subtitle{
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: $text-grey;
+    margin: 0 0 15px;
+    }
+  &__text{
+    font-size: 13px;
+    line-height: 15px;
+    height: 30px;
+    max-width: 238px;
+    margin: 0 auto;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+  }

@@ -1,11 +1,18 @@
-@import "source/helpers/helpers.css";
+@import "../../helpers/*.css";
 
 .page-header{
-  z-index: 1;
+  z-index: 20;
   position: absolute;
   left: 0;
   right: 0;
-  top: 35px;
+  top: 19px;
+  padding: 16px 0;
+  transition: background-color .25s;
+  &_fixed{
+    background-color: $black;
+    position: fixed;
+    top: 0;
+    }
   &__menu{
     @mixin bc;
     position: absolute;
@@ -50,7 +57,7 @@
     transition: background-color .25s;
     background-color: color($light-blue a(0));
     &:hover{
-      background-color: color($light-blue a(80%));
+      background-color: $pink;
       }
     &_selected{
       background-color: color($light-blue a(80%));

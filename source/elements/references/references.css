@@ -1,0 +1,81 @@
+@import "../../helpers/*.css";
+
+.references{
+  &__logos{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    }
+  &__link{
+    vertical-align: middle;
+    margin: 0 10px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    }
+  &__known,
+  &__projects{
+    margin: 0 0 20px;
+    line-height: 80px;
+    }
+  &__sub-title{
+    border-bottom: 1px solid $border-grey;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    color: color($black a(70%));
+    margin: 0 0 20px;
+    }
+  &__name{
+    font-size: 16px;
+    line-height: 25px;
+    font-family: 'PT Sans Caption', sans-serif;
+    color: $cyan;
+    }
+  &__role{
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'PT Sans Caption', sans-serif;
+    color: $light-grey;
+    }
+  &__avatar{
+    float: left;
+    width: 50px;
+    margin: 0 20px 0 0;
+    }
+  &__person{
+    @mixin clearit;
+    }
+  &__title{
+    font-size: 22px;
+    line-height: 30px;
+    padding: 20px 0;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    border-bottom: 1px solid $border-grey;
+    margin: 0 0 20px;
+    color: color($black a(80%));
+    }
+  &__list{
+    @mixin clearit;
+    }
+  &__reference{
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 20px 0 0;
+    margin: 0 0 60px;
+    float: left;
+    &-text{
+      font-size: 16px;
+      line-height: 20px;
+      color: color($black a(80%));
+      margin: 0 0 20px;
+      }
+    }
+  &__wrapper{
+    position: relative;
+    max-width: 990px;
+    padding: 20px 20px 40px;
+    margin: 0 auto;
+    }
+  }

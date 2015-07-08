@@ -1,0 +1,85 @@
+@import "../../helpers/*.css";
+
+.about{
+  background: $cyan;
+  &__text{
+    line-height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    }
+  &__value{
+    font-size: 36px;
+    line-height: 42px;
+    display: inline-block;
+    vertical-align: top;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    margin: 0 15px 0 0;
+    }
+  &__metrics{
+    position: absolute;
+    top: 270px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    }
+  &__metric{
+    width: 25%;
+    float: left;
+    text-align: center;
+    }
+  &__social{
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    }
+  &__linked-in,
+  &__fb{
+    background-color: $white;
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 50px 0 85px;
+    font-weight: bold;
+    span{
+      position: relative;
+      top: 2px;
+      }
+    }
+  &__linked-in{
+    color: $cyan;
+    background: $white url('../images/in.png') 52px 13px no-repeat;
+    background-size: 15px auto;
+    }
+  &__fb{
+    color: $some-blue;
+    background: $white url('../images/fb.png') 52px 13px no-repeat;
+    background-size: auto 16px;
+    }
+  &__title{
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: bold;
+    margin: 0 0 30px;
+    }
+  &__text{
+    font-size: 16px;
+    line-height: 20px;
+    max-width: 340px;
+    }
+  &__wrapper{
+    position: relative;
+    max-width: 990px;
+    height: 370px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    color: $white;
+    background: url('../images/about.jpg') 50% 100% no-repeat;
+    background-size: 100% auto;
+    }
+  }

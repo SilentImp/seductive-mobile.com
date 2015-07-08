@@ -1,4 +1,4 @@
-@import "source/helpers/helpers.css";
+@import "../../helpers/*.css";
 
 .window{
   background: $dark-blue url('../images/header-bg.jpg') 50% 50% no-repeat;

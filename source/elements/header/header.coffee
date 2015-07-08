@@ -13,6 +13,16 @@ class Header
     @button.on 'click', @toggleMenu
     @nav.on 'click', @closeMenuSpace
 
+
+    $(window).on 'scroll', @scrollHeader
+
+  scrollHeader: (event)=>
+    console.log $(window).scrollTop()
+    if $(window).scrollTop() >= 19
+      @header.toggleClass 'page-header_fixed', true
+    else
+      @header.toggleClass 'page-header_fixed', false
+
   closeMenuSpace: (event)=>
     if $(event.target).hasClass 'page-header__navigation'
       @closeMenu(event)

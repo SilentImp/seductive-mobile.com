@@ -1,4 +1,4 @@
-@import "source/helpers/colors.css";
+@import "../../helpers/colors.css";
 
 @define-mixin input {
   display: inline-block;

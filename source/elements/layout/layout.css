@@ -1,10 +1,10 @@
-@import "source/helpers/helpers.css";
+@import "../../helpers/*.css";
 
 body{
   font-family: 'PT Sans', sans-serif;
   min-height: 100vh;
   position: relative;
-  padding: 0 0 550px;
+  padding: 0 0 530px;
   box-sizing: border-box;
   overflow-x: hidden;
   a{

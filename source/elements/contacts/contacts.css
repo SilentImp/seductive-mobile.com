@@ -1,4 +1,4 @@
-@import "source/helpers/helpers.css";
+@import "../../helpers/*.css";
 
 .contacts{
   background: $blue-black;

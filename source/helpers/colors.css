@@ -1,9 +1,26 @@
 $white: #fff;
+$black: #000;
+
+$blue: #59b7f2;
+$some-blue: #325b85;
+$darkerst-blue: #07132a;
+$lightest-blue: #53c3ed;
+$cyan: #1a9ccd;
 $light-blue: #4da2d2;
 $lighter-blue: #53c2ec;
 $dark-blue: #1d2941;
-$black: #000;
 $darkest-blue: #0f1a2b;
 $blue-black: #131721;
+
 $grey: #2b2f38;
-$blue: #59b7f2;
+$light-grey: #4e4e4e;
+$lighter-grey: #5c5c5c;
+$border-grey: #d4d4d4;
+$border-grey-light: #e6e6e6;
+$text-grey: #2b2b2b;
+$pink: #ee3e5f;
+$button-blue: #c2c2c2;
+
+
+$dark-white: #f2f2f2;
+$title-grey: #4c4c4c;

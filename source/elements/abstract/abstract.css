@@ -1,0 +1,76 @@
+@import "../../helpers/*.css";
+
+.abstract{
+  background: $darkest-blue url('../images/video-poster.jpg') 50% 50% no-repeat;
+  background-size: cover;
+
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &__advantage{
+    width: 33%;
+    box-sizing: border-box;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 20px;
+    float: left;
+    background: 25px 32px no-repeat;
+    &_ux{
+      background-image: url('../images/ux.png');
+      background-size: 30px 29px;
+      }
+    &_native{
+      background-image: url('../images/native.png');
+      background-size: 31px 26px;
+      }
+    &_backend{
+      background-image: url('../images/backend.png');
+      background-size: 25px 27px;
+      }
+    p{
+      border-top: 1px solid color($white a(20%));
+      padding: 30px 0 0 60px;
+      }
+    }
+
+  &__advantages{
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+    min-height: 120px;
+    }
+
+  &__title{
+    font-size: 44px;
+    line-height: 50px;
+    max-width: 500px;
+    }
+
+  &__wrapper{
+    position: relative;
+    z-index: 1;
+
+    height: 320px;
+    max-width: 990px;
+    padding: 120px 20px 0;
+    margin: 0 auto;
+
+    color: $white;
+    }
+
+  &__video{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+    transition: opacity 2s;
+    z-index: 0;
+    &_loaded{
+      opacity: 1;
+      }
+    }
+  }

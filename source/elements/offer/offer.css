@@ -1,0 +1,53 @@
+@import "../../helpers/*.css";
+
+
+.offer{
+  &__text{
+    color: $lighter-grey;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 20px;
+    }
+  &__visualize{
+    @mixin buttonClean;
+    display: block;
+    width: 225px;
+    text-decoration: none;
+    text-align: center;
+    background: $pink;
+    &:focus,
+    &:hover{
+      background: color($pink lightness(-15%));
+      }
+    }
+  &__feature{
+    background: url('../images/check.png') 0 6px no-repeat;
+    background-size: 16px auto;
+    padding: 0 0 0 25px;
+    }
+  &__features{
+    font-size: 14px;
+    line-height: 30px;
+    margin: 0 0 20px;
+    }
+  &__title{
+    font-size: 22px;
+    line-height: 30px;
+    color: $lightest-blue;
+    span{
+      color: $light-grey;
+      display: block;
+      font-weight: bold;
+      margin: 0 0 30px;
+      }
+    }
+  &__wrapper{
+    position: relative;
+    height: 390px;
+    max-width: 510px;
+    padding: 50px 20px 0 500px;
+    margin: 0 auto;
+    background: url('../images/offer.jpg') 0 100% no-repeat;
+    background-size: auto 420px;
+    }
+  }

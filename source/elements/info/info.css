@@ -1,4 +1,4 @@
-@import "source/helpers/helpers.css";
+@import "../../helpers/*.css";
 
 .info{
   margin: 60px 0 54px;
