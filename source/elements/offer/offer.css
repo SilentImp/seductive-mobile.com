@@ -51,3 +51,12 @@
     background-size: auto 420px;
     }
   }
+
+@media screen and (max-width: 767px) {
+  html body .offer{
+    &__wrapper{
+      background: none;
+      padding: 0 20px;
+      }
+    }
+  }

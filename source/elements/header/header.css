@@ -5,8 +5,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 19px;
-  padding: 16px 0;
+  top: 35px;
+  padding: 0;
   transition: background-color .25s;
   &_fixed{
     background-color: $black;

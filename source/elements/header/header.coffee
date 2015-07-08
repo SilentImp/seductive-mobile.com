@@ -17,8 +17,7 @@ class Header
     $(window).on 'scroll', @scrollHeader
 
   scrollHeader: (event)=>
-    console.log $(window).scrollTop()
-    if $(window).scrollTop() >= 19
+    if $(window).scrollTop() >= 35
       @header.toggleClass 'page-header_fixed', true
     else
       @header.toggleClass 'page-header_fixed', false

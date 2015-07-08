@@ -74,3 +74,36 @@
       }
     }
   }
+
+
+@media screen and (max-width: 767px) {
+  html body .abstract{
+    &__wrapper{
+      padding: 75px 20px 0;
+      }
+    &__video{
+      display: none;
+      }
+    &__title{
+      font-size: 22px;
+      line-height: 30px;
+      margin: 0 0 20px;
+      }
+    &__advantages{
+      position: static;
+      padding: 0;
+      }
+    &__advantage{
+      padding: 0;
+      display: block;
+      width: auto;
+      float: none;
+      background-position: 10px 50%;
+      p{
+        padding: 20px 0 20px 60px;
+        font-size: 16px;
+        line-height: 20px;
+        }
+      }
+    }
+  }

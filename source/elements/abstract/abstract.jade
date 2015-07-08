@@ -1,5 +1,8 @@
 .abstract
-  video.abstract__video(poster="images/video-poster.jpg", width="100%" loop, preload, autoplay, autobuffer, muted, src="video/video.mov")
+  video.abstract__video(poster="images/video-poster.jpg", width="100%" loop, preload, autoplay, autobuffer, muted, src="video/video.webm")
+    source(src="video/video.webm" type="video/webm")
+    source(src="video/video.mp4" type="video/mp4")
+    source(src="video/video.ogg" type="video/ogg")
   .abstract__wrapper
     h1.abstract__title Agile Team developing Mobile Apps for Business
     ul.abstract__advantages
