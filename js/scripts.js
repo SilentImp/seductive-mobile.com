@@ -46,6 +46,96 @@ $(document).ready(function() {
   return new Abstract;
 });
 
+var CaseStudies,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+CaseStudies = (function() {
+  function CaseStudies() {
+    this.rePage = bind(this.rePage, this);
+    this.openPage = bind(this.openPage, this);
+    this.checkit = bind(this.checkit, this);
+    this.widget = $('.casestudies');
+    this.wrapper = this.widget.find('.casestudies__cases');
+    this["case"] = this.wrapper.find('.casestudies__case');
+    this.cw = this["case"].outerWidth(true);
+    this.nav = this.widget.find('.casestudies__navigation');
+    this.screens = null;
+    this.page = 0;
+    this.checkit();
+    $(window).on('resize', this.checkit);
+    this.nav.on('click', '.casestudies__page', this.openPage);
+  }
+
+  CaseStudies.prototype.checkit = function() {
+    var button, elements, i, j, ref, screens;
+    this.vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    screens = Math.ceil(this["case"].length * this.cw / this.vw);
+    if (screens < 2) {
+      if (screens !== this.screens) {
+        this.screens = null;
+        this.nav.find('.casestudies__page').remove();
+        this.nav.hide();
+        this.screens = screens;
+        this.page = 0;
+      }
+    } else {
+      if (screens !== this.screens) {
+        this.nav.find('.casestudies__page').remove();
+        elements = document.createDocumentFragment();
+        for (i = j = 0, ref = screens; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+          button = document.createElement('button');
+          button.setAttribute('type', 'button');
+          button.setAttribute('data-page', i);
+          button.className = 'casestudies__page';
+          button.appendChild(document.createElement('span'));
+          elements.appendChild(button);
+        }
+        this.nav.append(elements);
+        this.nav.show();
+        this.screens = screens;
+        if (this.page >= this.screens) {
+          this.page = this.screens - 1;
+        }
+      }
+    }
+    return this.rePage();
+  };
+
+  CaseStudies.prototype.openPage = function(event) {
+    var button;
+    button = $(event.currentTarget);
+    this.page = parseInt(button.attr('data-page'), 10);
+    return this.rePage();
+  };
+
+  CaseStudies.prototype.rePage = function() {
+    var delta, options, props;
+    this.nav.find('.casestudies__page_current').removeClass('casestudies__page_current');
+    this.nav.find('[data-page="' + this.page + '"]').addClass('casestudies__page_current');
+    if (this.screens === 1) {
+      delta = 0;
+    } else if (this.page === this.screens - 1) {
+      delta = this["case"].length * this.cw - this.vw + 20;
+    } else {
+      delta = Math.floor((this.page * this.vw) / this.cw) * this.cw;
+    }
+    props = {
+      'translateX': -1 * delta
+    };
+    options = {
+      'delay': 500
+    };
+    return this.wrapper.velocity("stop").velocity(props, options);
+  };
+
+  return CaseStudies;
+
+})();
+
+$(window).ready(function() {
+  return new CaseStudies;
+});
+
 var Header,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
