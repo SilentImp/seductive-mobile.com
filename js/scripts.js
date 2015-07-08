@@ -4,13 +4,35 @@ var Abstract,
 Abstract = (function() {
   function Abstract() {
     this.loaded = bind(this.loaded, this);
+    this.scrollToContacts = bind(this.scrollToContacts, this);
     this.video = $('.abstract__video');
     if (Modernizr.touch) {
       this.video.remove();
     } else {
       this.video.on('canplaythrough', this.loaded);
     }
+    this.contact = $('.abstract__contact');
+    this.contact.on('click', this.scrollToContacts);
   }
+
+  Abstract.prototype.scrollToContacts = function() {
+    var contacts;
+    contacts = $('.contacts__wrapper');
+    console.log('scroll', contacts);
+    return contacts.velocity("scroll", {
+      duration: 500,
+      begin: (function(_this) {
+        return function() {
+          return document.body.style.willChange = 'scroll-position';
+        };
+      })(this),
+      complete: (function(_this) {
+        return function() {
+          return document.body.style.willChange = 'auto';
+        };
+      })(this)
+    });
+  };
 
   Abstract.prototype.loaded = function() {
     return this.video.addClass('abstract__video_loaded');
