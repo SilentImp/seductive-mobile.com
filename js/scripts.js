@@ -54,8 +54,6 @@ Header = (function() {
     this.checkMedia = bind(this.checkMedia, this);
     this.endAnimation = bind(this.endAnimation, this);
     this.toggleMenu = bind(this.toggleMenu, this);
-    this.closeMenu = bind(this.closeMenu, this);
-    this.closeMenuSpace = bind(this.closeMenuSpace, this);
     this.scrollHeader = bind(this.scrollHeader, this);
     this.header = $('.page-header');
     this.button = this.header.find('.page-header__menu');
@@ -66,30 +64,14 @@ Header = (function() {
     this.checkMedia();
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
-    this.nav.on('click', this.closeMenuSpace);
     $(window).on('scroll', this.scrollHeader);
   }
 
   Header.prototype.scrollHeader = function(event) {
-    if ($(window).scrollTop() >= 35) {
+    if ($(window).scrollTop() >= 21) {
       return this.header.toggleClass('page-header_fixed', true);
     } else {
       return this.header.toggleClass('page-header_fixed', false);
-    }
-  };
-
-  Header.prototype.closeMenuSpace = function(event) {
-    if ($(event.target).hasClass('page-header__navigation')) {
-      return this.closeMenu(event);
-    }
-  };
-
-  Header.prototype.closeMenu = function(event) {
-    if (this.animation || !this.open || !this.state) {
-      return;
-    }
-    if ($(event.target).hasClass('page-header__navigation')) {
-      return this.button.trigger('click');
     }
   };
 
@@ -109,12 +91,14 @@ Header = (function() {
         compleate: this.endAnimation
       };
       this.open = false;
+      this.button.removeClass('page-header__menu_open');
     } else {
       this.open = true;
       props = {
         top: 0,
         compleate: this.endAnimation
       };
+      this.button.addClass('page-header__menu_open');
     }
     return this.nav.velocity("stop").velocity(props, options);
   };
