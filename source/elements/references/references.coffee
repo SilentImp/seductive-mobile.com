@@ -12,7 +12,7 @@ class References
 
   checkState: =>
     @screens = null
-    
+
     width = @elements.outerWidth(true)
     @vw = Math.max document.documentElement.clientWidth, window.innerWidth || 0
     screens = Math.ceil @elements.length*width/@wrapper.width()
@@ -24,7 +24,7 @@ class References
 
       @wrapper.find('.copy').remove()
 
-      if screens >1
+      if screens > 1
         first = @wrapper.children().slice(0, per_screen).clone(true)
         first.addClass 'copy'
         @wrapper.append first
@@ -47,7 +47,7 @@ class References
     options =
       'delay': @animation_time
       'complete': =>
-        if @current == @elements.length
+        if @current >= @elements.length
           @current = 0
           @reBase()
 
