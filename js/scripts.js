@@ -323,7 +323,7 @@ References = (function() {
       'delay': this.animation_time,
       'complete': (function(_this) {
         return function() {
-          if (_this.current === _this.elements.length) {
+          if (_this.current >= _this.elements.length) {
             _this.current = 0;
             return _this.reBase();
           }
