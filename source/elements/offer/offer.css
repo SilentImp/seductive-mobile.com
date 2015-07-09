@@ -55,6 +55,7 @@
 @media screen and (max-width: 767px) {
   html body .offer{
     &__wrapper{
+      max-width: none;
       background: none;
       padding: 20px;
       height: auto;

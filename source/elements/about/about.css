@@ -45,21 +45,23 @@
     text-decoration: none;
     line-height: 40px;
     height: 40px;
-    padding: 0 50px 0 85px;
+    padding: 0 50px;
     font-weight: bold;
     span{
+      display: inline-block;
       position: relative;
       top: 2px;
+      padding: 0 0 0 35px;
       }
     }
-  &__linked-in{
+  &__linked-in span{
     color: $cyan;
-    background: $white url('../images/in.png') 52px 13px no-repeat;
+    background: url('../images/in.png') 2px 11px no-repeat;
     background-size: 15px auto;
     }
-  &__fb{
+  &__fb span{
     color: $some-blue;
-    background: $white url('../images/fb.png') 52px 13px no-repeat;
+    background: url('../images/fb.png') 2px 8px no-repeat;
     background-size: auto 16px;
     }
   &__title{

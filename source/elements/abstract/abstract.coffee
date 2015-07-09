@@ -12,7 +12,6 @@ class Abstract
   scrollToContacts: =>
 
     contacts = $ '.contacts__wrapper'
-    console.log 'scroll', contacts
     contacts.velocity "scroll",
       duration: 500
       , begin:  =>

@@ -1,16 +1,22 @@
 @import "../../helpers/*.css";
 
 .references{
-  &__logos{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  &__carousel{
+    overflow: hidden;
+    position: relative;
+    }
+  &__container{
+    white-space: nowrap;
+    font-size: 0;
+    text-align: center;
+    transform: translateX(0);
     }
   &__link{
     vertical-align: middle;
-    margin: 0 10px;
-    flex-grow: 0;
-    flex-shrink: 0;
+    width: 16.66%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
     }
   &__known,
   &__projects{
@@ -58,13 +64,18 @@
     }
   &__list{
     @mixin clearit;
+    overflow: hidden;
+    position: relative;
     }
   &__reference{
+    text-align: left;
     box-sizing: border-box;
     width: 50%;
     padding: 0 20px 0 0;
     margin: 0 0 60px;
-    float: left;
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
     &-text{
       font-size: 16px;
       line-height: 20px;
@@ -97,17 +108,31 @@
       overflow: hidden;
       }
     &__link{
-      width:50%;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      width:25%;
       display: inline-block;
       }
     &__reference{
       width: auto;
       margin: 0 0 50px;
+      width: 50%;
+      }
+    }
+  }
+
+@media screen and (max-width: 600px) {
+  html body .references{
+    &__reference{
+      width: 100%;
+      }
+    &__link{
+      text-align: center;
       padding: 0;
-      display: none;
-      &:first-child{
-        display: block;
-        }
+      margin: 0;
+      width:50%;
+      display: inline-block;
       }
     }
   }

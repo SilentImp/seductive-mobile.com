@@ -11,27 +11,29 @@ class Header
 
     $(window).on 'resize', @checkMedia
     @button.on 'click', @toggleMenu
-    @nav.on 'click', @closeMenuSpace
 
+    @header.find('[data-contact]').on 'click', @contactUs
 
     $(window).on 'scroll', @scrollHeader
 
+  contactUs: =>
+    if @open
+      @button.trigger 'click'
+
+    contacts = $ '.contacts__wrapper'
+    contacts.velocity "scroll",
+      duration: 500
+      , begin:  =>
+        document.body.style.willChange = 'scroll-position'
+      , complete: =>
+        document.body.style.willChange = 'auto'
+
   scrollHeader: (event)=>
-    if $(window).scrollTop() >= 35
+    if $(window).scrollTop() >= 21
       @header.toggleClass 'page-header_fixed', true
     else
       @header.toggleClass 'page-header_fixed', false
 
-  closeMenuSpace: (event)=>
-    if $(event.target).hasClass 'page-header__navigation'
-      @closeMenu(event)
-
-  closeMenu: (event)=>
-    if @animation || !@open || !@state
-      return
-
-    if $(event.target).hasClass 'page-header__navigation'
-      @button.trigger 'click'
 
   toggleMenu: =>
 
@@ -48,11 +50,13 @@ class Header
         top: -(1.2*@vh)+'px'
         compleate: @endAnimation
       @open = false
+      @button.removeClass 'page-header__menu_open'
     else
       @open = true
       props =
         top: 0
         compleate: @endAnimation
+      @button.addClass 'page-header__menu_open'
 
     @nav.velocity("stop").velocity(props, options)
 
@@ -70,6 +74,12 @@ class Header
       @vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
       @nav.css
         height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)+'px'
+
+    if !@open
+      props =
+        top: -(1.2*@vh)+'px'
+      @nav.velocity("stop").velocity(props).velocity("finish")
+
 
 $(window).ready ->
   new Header

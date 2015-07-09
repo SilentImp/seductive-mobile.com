@@ -5,8 +5,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 35px;
-  padding: 0;
+  top: 21px;
+  padding: 14px 0;
   transition: background-color .25s;
   &_fixed{
     background-color: $black;
@@ -24,6 +24,10 @@
     background: url('../images/menu.svg') 50% 50% no-repeat;
     cursor: pointer;
     z-index: 3;
+    &_open{
+      background-image: url('../images/close.png');
+      background-size: 16px 16px;
+      }
     }
   &__logotype{
     float: left;
@@ -44,6 +48,7 @@
     line-height: 32px;
     }
   &__link{
+    @mixin bc;
     font-family: "PT Sans Caption", sans-serif;
     color: $white;
     text-decoration: none;
@@ -76,6 +81,7 @@
     position: fixed;
     top: 0;
     z-index: 20;
+    padding: 0;
     height: 60px;
     line-height: 60px;
     background-color: $black;
@@ -97,14 +103,29 @@
     &__sub-wrapper{
       background: $black;
       @mixin clearit;
-      padding: 80px 0 20px;
+      padding: 80px 40px 20px;
+      position: relative;
       }
     &__link{
-      float: left;
-      clear: both;
+      text-align: left;
       display: block;
-      width: auto;
-      margin: 0 30px;
+      width: 100%;
+      margin: 0;
+      line-height: 60px;
+      height: 60px;
+      padding: 0;
+      background: none;
+      font-style: 16px;
+      font-family: "PT Sans Caption", sans-serif;
+      border-top: 2px solid $title-grey;
+      &_selected,
+      &:active,
+      &:hover{
+        background: none;
+        }
+      &:first-child{
+        border-top-style: none;
+        }
       }
     &__logotype{
       background-position: 0 17px;
@@ -123,7 +144,7 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: color($black a(50%));
+      background: $black;
       z-index: -2;
       font-size: 0;
       }
