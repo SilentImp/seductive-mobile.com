@@ -18,7 +18,6 @@ Abstract = (function() {
   Abstract.prototype.scrollToContacts = function() {
     var contacts;
     contacts = $('.contacts__wrapper');
-    console.log('scroll', contacts);
     return contacts.velocity("scroll", {
       duration: 500,
       begin: (function(_this) {
@@ -145,6 +144,7 @@ Header = (function() {
     this.endAnimation = bind(this.endAnimation, this);
     this.toggleMenu = bind(this.toggleMenu, this);
     this.scrollHeader = bind(this.scrollHeader, this);
+    this.contactUs = bind(this.contactUs, this);
     this.header = $('.page-header');
     this.button = this.header.find('.page-header__menu');
     this.nav = this.header.find('.page-header__navigation');
@@ -154,8 +154,30 @@ Header = (function() {
     this.checkMedia();
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
+    this.header.find('[data-contact]').on('click', this.contactUs);
     $(window).on('scroll', this.scrollHeader);
   }
+
+  Header.prototype.contactUs = function() {
+    var contacts;
+    if (this.open) {
+      this.button.trigger('click');
+    }
+    contacts = $('.contacts__wrapper');
+    return contacts.velocity("scroll", {
+      duration: 500,
+      begin: (function(_this) {
+        return function() {
+          return document.body.style.willChange = 'scroll-position';
+        };
+      })(this),
+      complete: (function(_this) {
+        return function() {
+          return document.body.style.willChange = 'auto';
+        };
+      })(this)
+    });
+  };
 
   Header.prototype.scrollHeader = function(event) {
     if ($(window).scrollTop() >= 21) {
@@ -198,17 +220,24 @@ Header = (function() {
   };
 
   Header.prototype.checkMedia = function() {
+    var props;
     this.state = Modernizr.mq('(max-width: 767px)');
     if (!this.state) {
       this.nav.velocity('stop');
       this.nav.removeAttr('style');
       this.open = false;
-      return this.animation = false;
+      this.animation = false;
     } else {
       this.vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      return this.nav.css({
+      this.nav.css({
         height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px'
       });
+    }
+    if (!this.open) {
+      props = {
+        top: -(1.2 * this.vh) + 'px'
+      };
+      return this.nav.velocity("stop").velocity(props).velocity("finish");
     }
   };
 
@@ -233,4 +262,92 @@ Layout = (function() {
 
 $(document).ready(function() {
   return new Layout;
+});
+
+var References,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+References = (function() {
+  function References(widget) {
+    this.widget = widget;
+    this.reBase = bind(this.reBase, this);
+    this.next = bind(this.next, this);
+    this.checkState = bind(this.checkState, this);
+    this.wrapper = this.widget.find('.references__container');
+    this.elements = this.wrapper.children();
+    this.timer = null;
+    this.delay = 3000;
+    this.animation_time = 1500;
+    this.current = 0;
+    this.checkState();
+    $(window).on('resize', this.checkState);
+  }
+
+  References.prototype.checkState = function() {
+    var first, per_screen, screens, width;
+    this.screens = null;
+    width = this.elements.outerWidth(true);
+    this.vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    screens = Math.ceil(this.elements.length * width / this.wrapper.width());
+    per_screen = Math.ceil(this.wrapper.width() / width);
+    if (screens !== this.screens) {
+      this.screens = screens;
+      clearInterval(this.timer);
+      this.wrapper.find('.copy').remove();
+      if (screens > 1) {
+        first = this.wrapper.children().slice(0, per_screen).clone(true);
+        first.addClass('copy');
+        this.wrapper.append(first);
+        this.timer = setInterval(this.next, this.delay);
+      }
+    }
+    return this.reBase();
+  };
+
+  References.prototype.next = function() {
+    this.current++;
+    return this.reBase();
+  };
+
+  References.prototype.reBase = function() {
+    var delta, options, props;
+    if (this.screens > 1) {
+      delta = this.current * this.elements.outerWidth(true);
+    } else {
+      delta = 0;
+    }
+    props = {
+      'translateX': -1 * delta
+    };
+    options = {
+      'delay': this.animation_time,
+      'complete': (function(_this) {
+        return function() {
+          if (_this.current === _this.elements.length) {
+            _this.current = 0;
+            return _this.reBase();
+          }
+        };
+      })(this)
+    };
+    if (this.current === 0) {
+      return this.wrapper.velocity("stop").velocity(props, options).velocity("finish");
+    } else {
+      return this.wrapper.velocity("stop").velocity(props, options);
+    }
+  };
+
+  return References;
+
+})();
+
+$(window).ready(function() {
+  var carousel, i, len, ref, results;
+  ref = $('.references__carousel');
+  results = [];
+  for (i = 0, len = ref.length; i < len; i++) {
+    carousel = ref[i];
+    results.push(new References($(carousel)));
+  }
+  return results;
 });
