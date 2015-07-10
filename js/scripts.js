@@ -6,6 +6,9 @@ Abstract = (function() {
     this.loaded = bind(this.loaded, this);
     this.scrollToContacts = bind(this.scrollToContacts, this);
     this.video = $('.abstract__video');
+    if (this.video.length !== 1) {
+      return;
+    }
     if (Modernizr.mq('(max-width: 650px)')) {
       this.video.remove();
     } else {
@@ -57,6 +60,9 @@ CaseStudies = (function() {
     this.next = bind(this.next, this);
     var hammertime;
     this.widget = $('.casestudies');
+    if (this.widget.length !== 1) {
+      return;
+    }
     this.wrapper = this.widget.find('.casestudies__cases');
     this["case"] = this.wrapper.find('.casestudies__case');
     this.cw = this["case"].outerWidth(true);
@@ -174,6 +180,9 @@ Header = (function() {
     this.scrollHeader = bind(this.scrollHeader, this);
     this.contactUs = bind(this.contactUs, this);
     this.header = $('.page-header');
+    if (this.header.length !== 1) {
+      return;
+    }
     this.button = this.header.find('.page-header__menu');
     this.nav = this.header.find('.page-header__navigation');
     this.sub = this.header.find('.page-header__sub-wrapper');
@@ -184,6 +193,7 @@ Header = (function() {
     this.button.on('click', this.toggleMenu);
     this.header.find('[data-contact]').on('click', this.contactUs);
     if (this.header.attr('data-switch')) {
+      console.log('up');
       this.scrollHeader();
       $(window).on('scroll', this.scrollHeader);
     }
