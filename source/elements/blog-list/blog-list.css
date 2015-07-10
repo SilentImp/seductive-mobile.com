@@ -33,7 +33,7 @@
     }
   &__cover{
     display: block;
-    width: 100%;
+    max-width: 100%;
     }
   &__abstract{
     margin: 10px 0;

@@ -13,13 +13,22 @@ class CaseStudies
     @nav.on 'click', '.casestudies__page', @openPage
 
     if $('body').hasClass 'touch'
-      hammertime = new Hammer @widget
-      hammertime.on 'swipeleft', @next
+      hammertime = new Hammer @widget.get(0)
+      hammertime.get('swipe').set
+        direction: Hammer.DIRECTION_HORIZONTAL
+        enable: true
+      hammertime.on 'swipeleft', @prev
       hammertime.on 'swiperight', @next
 
   next: =>
     @page++
     if @page >= @screens
+      @page = 0
+    @rePage()
+
+  prev: =>
+    @page--
+    if @page < 0
       @page = @screens-1
     @rePage()
 

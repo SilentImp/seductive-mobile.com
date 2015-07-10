@@ -1,7 +1,7 @@
 class Abstract
   constructor: ->
     @video = $ '.abstract__video'
-    if Modernizr.touch
+    if Modernizr.mq '(max-width: 650px)'
       @video.remove()
     else
       @video.on 'canplaythrough', @loaded

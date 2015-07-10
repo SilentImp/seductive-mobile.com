@@ -10,8 +10,11 @@ class References
     @checkState()
     $(window).on 'resize', @checkState
 
-    if $('body').hasClass 'touch'
-      hammertime = new Hammer @widget
+    if !$('body').hasClass 'touch'
+      hammertime = new Hammer @widget.get(0)
+      hammertime.get('swipe').set
+        direction: Hammer.DIRECTION_HORIZONTAL
+        enable: true
       hammertime.on 'swipeleft', @next
       hammertime.on 'swiperight', @next
 
