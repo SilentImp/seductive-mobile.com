@@ -152,7 +152,7 @@ CaseStudies = (function() {
       'translateX': -1 * delta
     };
     options = {
-      'delay': 500
+      'delay': 250
     };
     return this.wrapper.velocity("stop").velocity(props, options);
   };
