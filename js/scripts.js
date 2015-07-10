@@ -74,12 +74,8 @@ CaseStudies = (function() {
     this.nav.on('click', '.casestudies__page', this.openPage);
     if ($('html').hasClass('touch')) {
       hammertime = new Hammer(this.widget.get(0));
-      hammertime.get('swipe').set({
-        direction: Hammer.DIRECTION_HORIZONTAL,
-        enable: true
-      });
-      hammertime.on('swipeleft', this.prev);
-      hammertime.on('swiperight', this.next);
+      hammertime.on('swiperight', this.prev);
+      hammertime.on('swipeleft', this.next);
     }
   }
 
@@ -193,7 +189,6 @@ Header = (function() {
     this.button.on('click', this.toggleMenu);
     this.header.find('[data-contact]').on('click', this.contactUs);
     if (this.header.attr('data-switch')) {
-      console.log('up');
       this.scrollHeader();
       $(window).on('scroll', this.scrollHeader);
     }
