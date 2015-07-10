@@ -1,12 +1,13 @@
-header.page-header
-  .page-header__wrapper
-    a(href="/")
-      h1.page-header__logotype Seductive Mobile
-    button.page-header__menu(type="button")
-    nav.page-header__navigation
-      .page-header__sub-wrapper
-        a.page-header__link(href="#Works") Works
-        a.page-header__link(href="#Blog") Blog
-        a.page-header__link(href="#Wireframes") Get Free Wireframes
-        button.page-header__link.page-header__link_selected(type="button", data-contact) Contact us
-      
+mixin header(fixed, noswitch)
+  header(class = fixed ? "page-header page-header_fixed" : "page-header", data-switch = noswitch ? false : true)
+    .page-header__wrapper
+      a(href="/")
+        h1.page-header__logotype Seductive Mobile
+      button.page-header__menu(type="button")
+      nav.page-header__navigation
+        .page-header__sub-wrapper
+          a.page-header__link(href="#Works") Works
+          a.page-header__link(href="#Blog") Blog
+          a.page-header__link(href="#Wireframes") Get Free Wireframes
+          button.page-header__link.page-header__link_selected(type="button", data-contact) Contact us
+        

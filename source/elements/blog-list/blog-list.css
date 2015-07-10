@@ -1,0 +1,51 @@
+@import "../../helpers/*.css";
+
+.page-header+.blog-list{
+  padding-top: 75px;
+  }
+
+.blog-list{
+  margin: 0 auto;
+  max-width: 990px;
+  padding: 15px 20px 0;
+  font-family: 'PT Sans';
+  &__post{
+    max-width: 620px;
+    position: relative;
+    border-top: 1px solid $border-grey-light;
+    padding: 30px 0 35px;
+    &:first-child{
+      border-top-style: none;
+      }
+    }
+  &__title{
+    display: block;
+    font-size: 22px;
+    line-height: 30px;
+    color: $black;
+    }
+  &__time{
+    display: block;
+    font-size: 14px;
+    line-height: 40px;
+    color: color($black a(50%));
+    }
+  &__cover{
+    display: block;
+    width: 100%;
+    }
+  &__abstract{
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 20px;
+    }
+  &__more{
+    @mixin buttonClean;
+    text-decoration: none;
+    padding: 0 25px;
+    font-size: 16px;
+    line-height: 40px;
+    font-family: 'PT Sans Caption';
+    font-weight: bold;
+    }
+  }

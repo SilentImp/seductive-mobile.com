@@ -2,8 +2,6 @@ extends ../elements/layout/layout.jade
 
 block content
   include ../elements/header/header.jade
-  +header(false)
-  include ../elements/window/window.jade
-  include ../elements/info/info.jade
-  include ../elements/details/details.jade
+  +header(true, true)
+  include ../elements/blog-post/blog-post.jade
   include ../elements/contacts/contacts.jade
