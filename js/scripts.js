@@ -48,121 +48,67 @@ $(document).ready(function() {
   return new Abstract;
 });
 
-var CaseStudies,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-CaseStudies = (function() {
-  function CaseStudies() {
-    this.rePage = bind(this.rePage, this);
-    this.openPage = bind(this.openPage, this);
-    this.checkit = bind(this.checkit, this);
-    this.prev = bind(this.prev, this);
-    this.next = bind(this.next, this);
-    var hammertime;
-    this.widget = $('.casestudies');
-    if (this.widget.length !== 1) {
-      return;
-    }
-    this.wrapper = this.widget.find('.casestudies__cases');
-    this["case"] = this.wrapper.find('.casestudies__case');
-    this.cw = this["case"].outerWidth(true);
-    this.nav = this.widget.find('.casestudies__navigation');
-    this.screens = null;
-    this.page = 0;
-    this.checkit();
-    $(window).on('resize', this.checkit);
-    this.nav.on('click', '.casestudies__page', this.openPage);
-    if ($('html').hasClass('touch')) {
-      hammertime = new Hammer(this.widget.get(0));
-      hammertime.on('swiperight', this.prev);
-      hammertime.on('swipeleft', this.next);
-    }
-  }
-
-  CaseStudies.prototype.next = function() {
-    this.page++;
-    if (this.page >= this.screens) {
-      this.page = 0;
-    }
-    return this.rePage();
-  };
-
-  CaseStudies.prototype.prev = function() {
-    this.page--;
-    if (this.page < 0) {
-      this.page = this.screens - 1;
-    }
-    return this.rePage();
-  };
-
-  CaseStudies.prototype.checkit = function() {
-    var button, elements, i, j, ref, screens;
-    this.vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    screens = Math.ceil(this["case"].length * this.cw / this.vw);
-    if (screens < 2) {
-      if (screens !== this.screens) {
-        this.screens = null;
-        this.nav.find('.casestudies__page').remove();
-        this.nav.hide();
-        this.screens = screens;
-        this.page = 0;
-      }
-    } else {
-      if (screens !== this.screens) {
-        this.nav.find('.casestudies__page').remove();
-        elements = document.createDocumentFragment();
-        for (i = j = 0, ref = screens; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-          button = document.createElement('button');
-          button.setAttribute('type', 'button');
-          button.setAttribute('data-page', i);
-          button.className = 'casestudies__page';
-          button.appendChild(document.createElement('span'));
-          elements.appendChild(button);
-        }
-        this.nav.append(elements);
-        this.nav.show();
-        this.screens = screens;
-        if (this.page >= this.screens) {
-          this.page = this.screens - 1;
-        }
-      }
-    }
-    return this.rePage();
-  };
-
-  CaseStudies.prototype.openPage = function(event) {
-    var button;
-    button = $(event.currentTarget);
-    this.page = parseInt(button.attr('data-page'), 10);
-    return this.rePage();
-  };
-
-  CaseStudies.prototype.rePage = function() {
-    var delta, options, props;
-    this.nav.find('.casestudies__page_current').removeClass('casestudies__page_current');
-    this.nav.find('[data-page="' + this.page + '"]').addClass('casestudies__page_current');
-    if (this.screens === 1) {
-      delta = 0;
-    } else if (this.page === this.screens - 1) {
-      delta = this["case"].length * this.cw - this.vw + 20;
-    } else {
-      delta = Math.floor((this.page * this.vw) / this.cw) * this.cw;
-    }
-    props = {
-      'translateX': -1 * delta
-    };
-    options = {
-      'delay': 250
-    };
-    return this.wrapper.velocity("stop").velocity(props, options);
-  };
-
-  return CaseStudies;
-
-})();
-
 $(window).ready(function() {
-  return new CaseStudies;
+  var options, part_0, part_1024, part_1300, part_500, part_670, part_860, values;
+  part_1300 = {
+    breakpoint: 1300,
+    settings: {
+      slidesToShow: 5,
+      slidesToScroll: 5
+    }
+  };
+  part_1024 = {
+    breakpoint: 1120,
+    settings: {
+      slidesToShow: 4,
+      slidesToScroll: 4
+    }
+  };
+  part_860 = {
+    breakpoint: 860,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 3
+    }
+  };
+  part_670 = {
+    breakpoint: 670,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2
+    }
+  };
+  part_500 = {
+    breakpoint: 500,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  };
+  part_0 = {
+    breakpoint: 0,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  };
+  values = [part_1300, part_1024, part_860, part_670, part_500, part_0];
+  options = {
+    dots: false,
+    centerMode: true,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    arrows: false,
+    infinite: true,
+    swipe: true,
+    touchMove: true,
+    swipeToSlide: true,
+    variableWidth: true,
+    swipe: true,
+    slide: '.casestudies',
+    responsive: values
+  };
+  return $('.casestudies .casestudies__cases').slick(options);
 });
 
 var Header,
@@ -300,102 +246,86 @@ $(document).ready(function() {
   return new Layout;
 });
 
-var References,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-References = (function() {
-  function References(widget) {
-    var hammertime;
-    this.widget = widget;
-    this.reBase = bind(this.reBase, this);
-    this.next = bind(this.next, this);
-    this.checkState = bind(this.checkState, this);
-    this.wrapper = this.widget.find('.references__container');
-    this.elements = this.wrapper.children();
-    this.timer = null;
-    this.delay = 3000;
-    this.animation_time = 1500;
-    this.current = 0;
-    this.checkState();
-    $(window).on('resize', this.checkState);
-    if ($('html').hasClass('touch')) {
-      hammertime = new Hammer(this.widget.get(0));
-      hammertime.get('swipe').set({
-        direction: Hammer.DIRECTION_HORIZONTAL,
-        enable: true
-      });
-      hammertime.on('swipeleft', this.next);
-      hammertime.on('swiperight', this.next);
-    }
-  }
-
-  References.prototype.checkState = function() {
-    var first, per_screen, screens, width;
-    this.screens = null;
-    width = this.elements.outerWidth(true);
-    this.vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    screens = Math.ceil(this.elements.length * width / this.wrapper.width());
-    per_screen = Math.ceil(this.wrapper.width() / width);
-    if (screens !== this.screens) {
-      this.screens = screens;
-      clearInterval(this.timer);
-      this.wrapper.find('.copy').remove();
-      if (screens > 1) {
-        first = this.wrapper.children().slice(0, per_screen).clone(true);
-        first.addClass('copy');
-        this.wrapper.append(first);
-        this.timer = setInterval(this.next, this.delay);
-      }
-    }
-    return this.reBase();
-  };
-
-  References.prototype.next = function() {
-    this.current++;
-    clearInterval(this.timer);
-    this.timer = setInterval(this.next, this.delay);
-    return this.reBase();
-  };
-
-  References.prototype.reBase = function() {
-    var delta, options, props;
-    if (this.screens > 1) {
-      delta = this.current * this.elements.outerWidth(true);
-    } else {
-      delta = 0;
-    }
-    props = {
-      'translateX': -1 * delta
-    };
-    options = {
-      'delay': this.animation_time,
-      'complete': (function(_this) {
-        return function() {
-          if (_this.current >= _this.elements.length) {
-            _this.current = 0;
-            return _this.reBase();
-          }
-        };
-      })(this)
-    };
-    if (this.current === 0) {
-      return this.wrapper.velocity("stop").velocity(props, options).velocity("finish");
-    } else {
-      return this.wrapper.velocity("stop").velocity(props, options);
-    }
-  };
-
-  return References;
-
-})();
-
 $(window).ready(function() {
-  var carousel, i, len, ref, results;
-  ref = $('.references__carousel');
-  results = [];
+  var carousel, i, len, options, part_1024, part_360, part_540, part_600, part_800, part_990, ref, values;
+  part_1024 = {
+    breakpoint: 990,
+    settings: {
+      slidesToShow: 6,
+      slidesToScroll: 6,
+      infinite: true,
+      dots: true
+    }
+  };
+  part_800 = {
+    breakpoint: 700,
+    settings: {
+      slidesToShow: 4,
+      slidesToScroll: 4
+    }
+  };
+  part_540 = {
+    breakpoint: 540,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2
+    }
+  };
+  part_360 = {
+    breakpoint: 360,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  };
+  part_990 = {
+    breakpoint: 990,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      infinite: true,
+      dots: true
+    }
+  };
+  part_600 = {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+    }
+  };
+  values = [part_1024, part_800, part_540, part_360];
+  options = {
+    centerMode: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: false,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    arrows: false,
+    respondTo: 'min',
+    variableWidth: false,
+    responsive: values
+  };
+  ref = $('.references__carousel .references__container');
   for (i = 0, len = ref.length; i < len; i++) {
     carousel = ref[i];
-    results.push(new References($(carousel)));
+    $(carousel).slick(options);
   }
-  return results;
+  return $('.references__answers .references__container').slick({
+    centerMode: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    arrows: false,
+    dots: false,
+    respondTo: 'min',
+    variableWidth: false,
+    responsive: [part_990, part_600]
+  });
 });
