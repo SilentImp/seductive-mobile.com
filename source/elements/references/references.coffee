@@ -10,6 +10,11 @@ class References
     @checkState()
     $(window).on 'resize', @checkState
 
+    if $('body').hasClass 'touch'
+      hammertime = new Hammer @widget
+      hammertime.on 'swipeleft', @next
+      hammertime.on 'swiperight', @next
+
   checkState: =>
     @screens = null
 

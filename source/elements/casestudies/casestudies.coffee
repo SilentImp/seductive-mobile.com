@@ -12,6 +12,17 @@ class CaseStudies
     $(window).on 'resize', @checkit
     @nav.on 'click', '.casestudies__page', @openPage
 
+    if $('body').hasClass 'touch'
+      hammertime = new Hammer @widget
+      hammertime.on 'swipeleft', @next
+      hammertime.on 'swiperight', @next
+
+  next: =>
+    @page++
+    if @page >= @screens
+      @page = @screens-1
+    @rePage()
+
   checkit: =>
 
     @vw = Math.max document.documentElement.clientWidth, window.innerWidth || 0
