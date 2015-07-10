@@ -53,6 +53,8 @@ CaseStudies = (function() {
     this.rePage = bind(this.rePage, this);
     this.openPage = bind(this.openPage, this);
     this.checkit = bind(this.checkit, this);
+    this.next = bind(this.next, this);
+    var hammertime;
     this.widget = $('.casestudies');
     this.wrapper = this.widget.find('.casestudies__cases');
     this["case"] = this.wrapper.find('.casestudies__case');
@@ -63,7 +65,20 @@ CaseStudies = (function() {
     this.checkit();
     $(window).on('resize', this.checkit);
     this.nav.on('click', '.casestudies__page', this.openPage);
+    if ($('body').hasClass('touch')) {
+      hammertime = new Hammer(this.widget);
+      hammertime.on('swipeleft', this.next);
+      hammertime.on('swiperight', this.next);
+    }
   }
+
+  CaseStudies.prototype.next = function() {
+    this.page++;
+    if (this.page >= this.screens) {
+      this.page = this.screens - 1;
+    }
+    return this.rePage();
+  };
 
   CaseStudies.prototype.checkit = function() {
     var button, elements, i, j, ref, screens;
@@ -272,6 +287,7 @@ var References,
 
 References = (function() {
   function References(widget) {
+    var hammertime;
     this.widget = widget;
     this.reBase = bind(this.reBase, this);
     this.next = bind(this.next, this);
@@ -284,6 +300,11 @@ References = (function() {
     this.current = 0;
     this.checkState();
     $(window).on('resize', this.checkState);
+    if ($('body').hasClass('touch')) {
+      hammertime = new Hammer(this.widget);
+      hammertime.on('swipeleft', this.next);
+      hammertime.on('swiperight', this.next);
+    }
   }
 
   References.prototype.checkState = function() {
