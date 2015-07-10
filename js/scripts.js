@@ -6,7 +6,7 @@ Abstract = (function() {
     this.loaded = bind(this.loaded, this);
     this.scrollToContacts = bind(this.scrollToContacts, this);
     this.video = $('.abstract__video');
-    if (Modernizr.touch) {
+    if (Modernizr.mq('(max-width: 650px)')) {
       this.video.remove();
     } else {
       this.video.on('canplaythrough', this.loaded);
@@ -68,6 +68,10 @@ CaseStudies = (function() {
     this.nav.on('click', '.casestudies__page', this.openPage);
     if ($('body').hasClass('touch')) {
       hammertime = new Hammer(this.widget.get(0));
+      hammertime.get('swipe').set({
+        direction: Hammer.DIRECTION_HORIZONTAL,
+        enable: true
+      });
       hammertime.on('swipeleft', this.prev);
       hammertime.on('swiperight', this.next);
     }
@@ -310,7 +314,6 @@ References = (function() {
     this.checkState();
     $(window).on('resize', this.checkState);
     if (!$('body').hasClass('touch')) {
-      console.log('start');
       hammertime = new Hammer(this.widget.get(0));
       hammertime.get('swipe').set({
         direction: Hammer.DIRECTION_HORIZONTAL,
