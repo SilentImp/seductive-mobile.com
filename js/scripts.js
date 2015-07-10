@@ -146,6 +146,9 @@ Header = (function() {
     this.scrollHeader = bind(this.scrollHeader, this);
     this.contactUs = bind(this.contactUs, this);
     this.header = $('.page-header');
+    if (!this.header.attr('data-switch')) {
+      return;
+    }
     this.button = this.header.find('.page-header__menu');
     this.nav = this.header.find('.page-header__navigation');
     this.sub = this.header.find('.page-header__sub-wrapper');
