@@ -12,7 +12,7 @@ class CaseStudies
     $(window).on 'resize', @checkit
     @nav.on 'click', '.casestudies__page', @openPage
 
-    if $('body').hasClass 'touch'
+    if $('html').hasClass 'touch'
       hammertime = new Hammer @widget.get(0)
       hammertime.get('swipe').set
         direction: Hammer.DIRECTION_HORIZONTAL

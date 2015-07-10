@@ -10,7 +10,7 @@ class References
     @checkState()
     $(window).on 'resize', @checkState
 
-    if !$('body').hasClass 'touch'
+    if $('html').hasClass 'touch'
       hammertime = new Hammer @widget.get(0)
       hammertime.get('swipe').set
         direction: Hammer.DIRECTION_HORIZONTAL
@@ -42,6 +42,8 @@ class References
 
   next: =>
     @current++
+    clearInterval @timer
+    @timer = setInterval @next, @delay
     @reBase()
 
   reBase: =>
