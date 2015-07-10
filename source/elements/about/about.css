@@ -68,7 +68,8 @@
     font-size: 22px;
     line-height: 30px;
     font-weight: bold;
-    margin: 0 0 30px
+    margin: 0 0 30px;
+    font-family: 'PT Sans Caption', sans-serif;
     }
   &__text{
     font-size: 16px;

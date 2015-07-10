@@ -34,6 +34,7 @@
     font-size: 22px;
     line-height: 30px;
     color: $lightest-blue;
+    font-family: 'PT Sans Caption', sans-serif;
     span{
       color: $light-grey;
       display: block;

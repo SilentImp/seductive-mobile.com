@@ -1,6 +1,9 @@
 class Abstract
   constructor: ->
     @video = $ '.abstract__video'
+    if @video.length != 1
+      return
+
     if Modernizr.mq '(max-width: 650px)'
       @video.remove()
     else

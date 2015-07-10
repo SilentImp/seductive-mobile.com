@@ -1,96 +1,63 @@
-class CaseStudies
-  constructor: ->
-    @widget = $ '.casestudies'
-    @wrapper = @widget.find '.casestudies__cases'
-    @case = @wrapper.find '.casestudies__case'
-    @cw = @case.outerWidth(true)
-    @nav = @widget.find '.casestudies__navigation'
-    @screens = null
-    @page = 0
-
-    @checkit()
-    $(window).on 'resize', @checkit
-    @nav.on 'click', '.casestudies__page', @openPage
-
-    if $('html').hasClass 'touch'
-      hammertime = new Hammer @widget.get(0)
-      hammertime.get('swipe').set
-        direction: Hammer.DIRECTION_HORIZONTAL
-        enable: true
-      hammertime.on 'swipeleft', @prev
-      hammertime.on 'swiperight', @next
-
-  next: =>
-    @page++
-    if @page >= @screens
-      @page = 0
-    @rePage()
-
-  prev: =>
-    @page--
-    if @page < 0
-      @page = @screens-1
-    @rePage()
-
-  checkit: =>
-
-    @vw = Math.max document.documentElement.clientWidth, window.innerWidth || 0
-    screens = Math.ceil(@case.length*@cw/@vw)
-
-    if screens < 2
-      if screens != @screens
-        @screens = null
-        @nav.find('.casestudies__page').remove()
-        @nav.hide()
-        @screens = screens
-        @page = 0
-
-    else
-      if screens != @screens
-        @nav.find('.casestudies__page').remove()
-        elements = document.createDocumentFragment()
-        for i in [0...screens]
-          button = document.createElement 'button'
-          button.setAttribute 'type', 'button'
-          button.setAttribute 'data-page', i
-          button.className = 'casestudies__page'
-          button.appendChild document.createElement('span')
-          elements.appendChild button
-
-        @nav.append elements
-        @nav.show()
-        @screens = screens
-
-        if @page >= @screens
-          @page = @screens-1
-
-    @rePage()
-
-  openPage: (event)=>
-    button = $ event.currentTarget
-    @page = parseInt button.attr('data-page'), 10
-    @rePage()
-
-  rePage: =>
-
-    @nav.find('.casestudies__page_current').removeClass 'casestudies__page_current'
-    @nav.find('[data-page="'+@page+'"]').addClass 'casestudies__page_current'
-
-    if @screens == 1
-      delta = 0
-    else if @page == @screens-1
-      delta = @case.length*@cw - @vw + 20
-    else
-      delta = Math.floor((@page*@vw)/@cw)*@cw
-
-    props =
-      'translateX': -1*delta
-    options =
-      'delay': 500
-    @wrapper.velocity("stop").velocity props, options
-
-
-
-
 $(window).ready ->
-  new CaseStudies
+
+  part_1300 = {
+	  breakpoint: 1300
+	  settings: {
+			slidesToShow: 5
+			slidesToScroll: 5
+    }}
+
+  part_1024 = {
+	  breakpoint: 1120
+	  settings: {
+			slidesToShow: 4
+			slidesToScroll: 4
+    }}
+
+  part_860 = {
+    breakpoint: 860
+	  settings: {
+  			slidesToShow: 3
+  			slidesToScroll: 3
+      }}
+
+  part_670 = {
+    breakpoint: 670
+	  settings: {
+			slidesToShow: 2
+			slidesToScroll: 2
+    }}
+
+  part_500 = {
+    breakpoint: 500
+	  settings: {
+			slidesToShow: 1
+			slidesToScroll:1
+    }}
+
+  part_0 = {
+    breakpoint: 0
+	  settings: {
+			slidesToShow: 1
+			slidesToScroll: 1
+    }}
+
+  values = [part_1300, part_1024, part_860, part_670, part_500, part_0]
+
+  options = {
+    dots: false
+    centerMode: true
+    slidesToShow: 6
+    slidesToScroll: 6
+    arrows: false
+    infinite: true
+    swipe: true
+    touchMove: true
+    swipeToSlide: true
+    variableWidth: true
+    swipe: true
+    slide: '.casestudies'
+    responsive: values
+    }
+
+  $('.casestudies .casestudies__cases').slick options

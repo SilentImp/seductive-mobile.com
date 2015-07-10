@@ -1,6 +1,11 @@
 @import "../../helpers/*.css";
 
 .references{
+
+  .slick-slider{
+    margin: 0;
+    }
+
   &__carousel{
     overflow: hidden;
     position: relative;

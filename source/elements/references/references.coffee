@@ -1,71 +1,80 @@
-class References
-  constructor: (@widget)->
-    @wrapper = @widget.find '.references__container'
-    @elements = @wrapper.children()
-    @timer = null
-    @delay = 3000
-    @animation_time = 1500
-    @current = 0
-
-    @checkState()
-    $(window).on 'resize', @checkState
-
-    if $('html').hasClass 'touch'
-      hammertime = new Hammer @widget.get(0)
-      hammertime.get('swipe').set
-        direction: Hammer.DIRECTION_HORIZONTAL
-        enable: true
-      hammertime.on 'swipeleft', @next
-      hammertime.on 'swiperight', @next
-
-  checkState: =>
-    @screens = null
-
-    width = @elements.outerWidth(true)
-    @vw = Math.max document.documentElement.clientWidth, window.innerWidth || 0
-    screens = Math.ceil @elements.length*width/@wrapper.width()
-    per_screen = Math.ceil @wrapper.width()/width
-
-    if screens != @screens
-      @screens = screens
-      clearInterval @timer
-
-      @wrapper.find('.copy').remove()
-
-      if screens > 1
-        first = @wrapper.children().slice(0, per_screen).clone(true)
-        first.addClass 'copy'
-        @wrapper.append first
-        @timer = setInterval @next, @delay
-
-    @reBase()
-
-  next: =>
-    @current++
-    clearInterval @timer
-    @timer = setInterval @next, @delay
-    @reBase()
-
-  reBase: =>
-    if @screens > 1
-      delta = @current*@elements.outerWidth(true)
-    else
-      delta = 0
-
-    props =
-      'translateX': -1*delta
-    options =
-      'delay': @animation_time
-      'complete': =>
-        if @current >= @elements.length
-          @current = 0
-          @reBase()
-
-    if @current == 0
-      @wrapper.velocity("stop").velocity(props, options).velocity("finish")
-    else
-      @wrapper.velocity("stop").velocity props, options
-
 $(window).ready ->
-  for carousel in $('.references__carousel')
-    new References $(carousel)
+  part_1024 = {
+    breakpoint: 990
+    settings: {
+  		slidesToShow: 6
+  		slidesToScroll: 6
+  		infinite: true
+  		dots: true
+    }}
+
+  part_800 = {
+    breakpoint: 700
+    settings: {
+  		slidesToShow: 4
+  		slidesToScroll: 4
+    }}
+
+  part_540 = {
+    breakpoint: 540
+    settings: {
+  		slidesToShow: 2
+  		slidesToScroll: 2
+    }}
+
+  part_360 = {
+    breakpoint: 360
+    settings: {
+  		slidesToShow: 1
+  		slidesToScroll: 1
+    }}
+
+
+  part_990 = {
+    breakpoint: 990
+    settings: {
+  		slidesToShow: 2
+  		slidesToScroll: 2
+  		infinite: true
+  		dots: true
+    }}
+
+  part_600 = {
+    breakpoint: 600
+    settings: {
+  		slidesToShow: 1
+  		slidesToScroll: 1
+  		infinite: true
+  		dots: true
+    }}
+
+  values = [part_1024, part_800, part_540, part_360]
+
+  options =
+    centerMode: false
+    infinite: true
+    autoplay: true
+    autoplaySpeed: 3000
+    dots: false
+    slidesToShow: 6
+    slidesToScroll: 6
+    arrows: false
+    respondTo: 'min'
+    variableWidth: false
+    responsive: values
+
+  for carousel in $ '.references__carousel .references__container'
+    $(carousel).slick options
+
+  $('.references__answers .references__container').slick
+    centerMode: false
+    infinite: true
+    autoplay: true
+    autoplaySpeed: 3000
+    slidesToShow: 2
+    slidesToScroll: 2
+    arrows: false
+    dots: false
+    respondTo: 'min'
+    variableWidth: false
+    responsive: [part_990, part_600]

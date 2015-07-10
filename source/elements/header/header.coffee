@@ -2,6 +2,9 @@ class Header
   constructor: ->
     @header = $ '.page-header'
 
+    if @header.length != 1
+      return
+
     @button = @header.find '.page-header__menu'
     @nav = @header.find '.page-header__navigation'
     @sub = @header.find '.page-header__sub-wrapper'
