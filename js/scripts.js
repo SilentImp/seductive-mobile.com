@@ -53,6 +53,7 @@ CaseStudies = (function() {
     this.rePage = bind(this.rePage, this);
     this.openPage = bind(this.openPage, this);
     this.checkit = bind(this.checkit, this);
+    this.prev = bind(this.prev, this);
     this.next = bind(this.next, this);
     var hammertime;
     this.widget = $('.casestudies');
@@ -66,8 +67,8 @@ CaseStudies = (function() {
     $(window).on('resize', this.checkit);
     this.nav.on('click', '.casestudies__page', this.openPage);
     if ($('body').hasClass('touch')) {
-      hammertime = new Hammer(this.widget);
-      hammertime.on('swipeleft', this.next);
+      hammertime = new Hammer(this.widget.get(0));
+      hammertime.on('swipeleft', this.prev);
       hammertime.on('swiperight', this.next);
     }
   }
@@ -75,6 +76,14 @@ CaseStudies = (function() {
   CaseStudies.prototype.next = function() {
     this.page++;
     if (this.page >= this.screens) {
+      this.page = 0;
+    }
+    return this.rePage();
+  };
+
+  CaseStudies.prototype.prev = function() {
+    this.page--;
+    if (this.page < 0) {
       this.page = this.screens - 1;
     }
     return this.rePage();
@@ -161,9 +170,6 @@ Header = (function() {
     this.scrollHeader = bind(this.scrollHeader, this);
     this.contactUs = bind(this.contactUs, this);
     this.header = $('.page-header');
-    if (!this.header.attr('data-switch')) {
-      return;
-    }
     this.button = this.header.find('.page-header__menu');
     this.nav = this.header.find('.page-header__navigation');
     this.sub = this.header.find('.page-header__sub-wrapper');
@@ -173,7 +179,10 @@ Header = (function() {
     $(window).on('resize', this.checkMedia);
     this.button.on('click', this.toggleMenu);
     this.header.find('[data-contact]').on('click', this.contactUs);
-    $(window).on('scroll', this.scrollHeader);
+    if (this.header.attr('data-switch')) {
+      this.scrollHeader();
+      $(window).on('scroll', this.scrollHeader);
+    }
   }
 
   Header.prototype.contactUs = function() {
@@ -300,8 +309,13 @@ References = (function() {
     this.current = 0;
     this.checkState();
     $(window).on('resize', this.checkState);
-    if ($('body').hasClass('touch')) {
-      hammertime = new Hammer(this.widget);
+    if (!$('body').hasClass('touch')) {
+      console.log('start');
+      hammertime = new Hammer(this.widget.get(0));
+      hammertime.get('swipe').set({
+        direction: Hammer.DIRECTION_HORIZONTAL,
+        enable: true
+      });
       hammertime.on('swipeleft', this.next);
       hammertime.on('swiperight', this.next);
     }
