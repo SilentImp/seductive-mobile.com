@@ -64,6 +64,9 @@
     &:hover{
       background-color: $pink;
       }
+    &_marked{
+      background-color: $pink;
+      }
     &_selected{
       background-color: color($light-blue a(80%));
       }

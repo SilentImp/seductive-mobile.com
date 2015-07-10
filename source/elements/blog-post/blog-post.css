@@ -1,0 +1,43 @@
+@import "../../helpers/*.css";
+
+.page-header+.blog-post{
+  padding-top: 75px;
+  }
+
+.blog-post{
+  margin: 0 auto;
+  max-width: 990px;
+  max-width: 620px;
+  position: relative;
+  left: -185px;
+  padding: 15px 20px 25px;
+  font-family: 'PT Sans';
+  h1{
+    display: block;
+    font-size: 22px;
+    line-height: 30px;
+    color: $black;
+    font-family: 'PT Sans Caption';
+    }
+  h2{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: 'PT Sans Caption';
+    }
+  time{
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    color: color($black a(50%));
+    }
+  p{
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 20px;
+    }
+  img{
+    display: block;
+    margin: 20px 0;
+    }
+  }

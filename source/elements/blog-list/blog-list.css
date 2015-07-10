@@ -7,7 +7,7 @@
 .blog-list{
   margin: 0 auto;
   max-width: 990px;
-  padding: 15px 20px 0;
+  padding: 15px 20px 25px;
   font-family: 'PT Sans';
   &__post{
     max-width: 620px;
@@ -23,6 +23,7 @@
     font-size: 22px;
     line-height: 30px;
     color: $black;
+    font-family: 'PT Sans Caption';
     }
   &__time{
     display: block;
